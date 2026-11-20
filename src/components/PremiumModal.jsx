@@ -65,7 +65,7 @@ export default function PremiumModal({
   // makes the modal fixed relative to the page and can place it off-screen.
   return createPortal(
     <div
-      className="modal-backdrop"
+      className="modal-backdrop premium-modal-backdrop"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
