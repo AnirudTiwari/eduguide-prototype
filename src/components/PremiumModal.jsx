@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 
 /**
@@ -16,6 +16,7 @@ export default function PremiumModal({
   colleges = [],
 }) {
   const [activeTab, setActiveTab] = useState(initialTab);
+  const dialogRef = useRef(null);
 
   // Sync activeTab when modal is reopened
   useEffect(() => {
@@ -24,25 +25,22 @@ export default function PremiumModal({
     }
   }, [isOpen, initialTab]);
 
-  // Handle escape key and body scroll lock
+  // Use the browser's top layer instead of a CSS-only backdrop. This prevents
+  // sticky headers, animated ancestors, and stacking contexts from hiding the dialog.
   useEffect(() => {
     if (!isOpen) return;
+    const dialog = dialogRef.current;
+    if (!dialog) return;
 
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape') {
-        onClose();
-      }
-    };
+    if (!dialog.open) dialog.showModal();
 
-    const originalOverflow = document.body.style.overflow;
+    const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
-    window.addEventListener('keydown', handleKeyDown);
-
     return () => {
-      document.body.style.overflow = originalOverflow;
-      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = previousOverflow;
+      if (dialog.open) dialog.close();
     };
-  }, [isOpen, onClose]);
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
@@ -60,16 +58,21 @@ export default function PremiumModal({
     ['col-3', 'col-6'].includes(c.id)
   );
 
-  // Render above the animated page container so fixed positioning uses the viewport.
-  // The parent route uses a transform-based entrance animation, which otherwise
-  // makes the modal fixed relative to the page and can place it off-screen.
+  // A native <dialog> is promoted to the browser's top layer by showModal().
+  // It will remain visible even after scrolling down the results page.
   return createPortal(
-    <div
-      className="modal-backdrop premium-modal-backdrop"
-      onClick={onClose}
-      role="dialog"
-      aria-modal="true"
+    <dialog
+      ref={dialogRef}
+      className="premium-native-dialog"
       aria-labelledby="premium-modal-title"
+      onCancel={(event) => {
+        event.preventDefault();
+        onClose();
+      }}
+      onClick={(event) => {
+        // Clicking the dialog's backdrop targets the dialog itself.
+        if (event.target === event.currentTarget) onClose();
+      }}
     >
       <div
         className="modal-card premium-modal-card"
@@ -421,7 +424,7 @@ export default function PremiumModal({
           </button>
         </div>
       </div>
-    </div>,
+    </dialog>,
     document.body
   );
 }
