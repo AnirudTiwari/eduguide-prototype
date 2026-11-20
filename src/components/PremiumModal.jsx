@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react';
-import { createPortal } from 'react-dom';
 
 /**
  * PremiumModal Component
@@ -16,7 +15,7 @@ export default function PremiumModal({
   colleges = [],
 }) {
   const [activeTab, setActiveTab] = useState(initialTab);
-  const dialogRef = useRef(null);
+  const panelRef = useRef(null);
 
   // Sync activeTab when modal is reopened
   useEffect(() => {
@@ -25,22 +24,15 @@ export default function PremiumModal({
     }
   }, [isOpen, initialTab]);
 
-  // Use the browser's top layer instead of a CSS-only backdrop. This prevents
-  // sticky headers, animated ancestors, and stacking contexts from hiding the dialog.
+  // Display the information inside the page, never in an overlay.
+  // This avoids all modal stacking, viewport positioning and browser top-layer issues.
   useEffect(() => {
     if (!isOpen) return;
-    const dialog = dialogRef.current;
-    if (!dialog) return;
-
-    if (!dialog.open) dialog.showModal();
-
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      if (dialog.open) dialog.close();
-    };
-  }, [isOpen]);
+    const frame = requestAnimationFrame(() => {
+      panelRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [isOpen, initialTab]);
 
   if (!isOpen) return null;
 
@@ -58,21 +50,12 @@ export default function PremiumModal({
     ['col-3', 'col-6'].includes(c.id)
   );
 
-  // A native <dialog> is promoted to the browser's top layer by showModal().
-  // It will remain visible even after scrolling down the results page.
-  return createPortal(
-    <dialog
-      ref={dialogRef}
-      className="premium-native-dialog"
+  // Premium details are a normal, accessible expandable section of Career Results.
+  return (
+    <section
+      ref={panelRef}
+      className="premium-inline-shell"
       aria-labelledby="premium-modal-title"
-      onCancel={(event) => {
-        event.preventDefault();
-        onClose();
-      }}
-      onClick={(event) => {
-        // Clicking the dialog's backdrop targets the dialog itself.
-        if (event.target === event.currentTarget) onClose();
-      }}
     >
       <div
         className="modal-card premium-modal-card"
@@ -420,11 +403,10 @@ export default function PremiumModal({
             className="btn btn-secondary"
             onClick={onClose}
           >
-            Close Preview
+            Close Premium Details
           </button>
         </div>
       </div>
-    </dialog>,
-    document.body
+    </section>
   );
 }

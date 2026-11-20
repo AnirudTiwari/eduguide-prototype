@@ -439,6 +439,15 @@ export default function CareerResults({ answers, onEdit, onReset }) {
         </div>
       </section>
 
+      {/* PROPOSED PREMIUM DETAILS — displayed inline so the content is always visible */}
+      <PremiumModal
+        isOpen={isPremiumOpen}
+        onClose={() => setIsPremiumOpen(false)}
+        initialTab={premiumTab}
+        answers={answers}
+        colleges={colleges}
+      />
+
       {/* 5. EXPLORE OTHER OPTIONS EXPANDER */}
       <section className="other-options-section">
         <div className="expander-card card">
@@ -558,14 +567,6 @@ export default function CareerResults({ answers, onEdit, onReset }) {
         </div>
       </section>
 
-      {/* PROPOSED PREMIUM MODAL */}
-      <PremiumModal
-        isOpen={isPremiumOpen}
-        onClose={() => setIsPremiumOpen(false)}
-        initialTab={premiumTab}
-        answers={answers}
-        colleges={colleges}
-      />
     </div>
   );
 }
