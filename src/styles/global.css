@@ -4410,3 +4410,297 @@ body {
     transform: none;
   }
 }
+
+
+/* ==========================================================================
+   EduGuide Rich Surface Edition
+   Solid colour blocking creates contrast and rhythm across long information pages.
+   All changes are decorative; no application logic, premium panel or modal behaviour.
+   ========================================================================== */
+
+:root {
+  --color-bg: #eaf1f6;
+  --color-surface-alt: #e8f2f2;
+  --color-border: #d5e3ec;
+}
+
+body {
+  background-color: #eaf1f6;
+  background-image:
+    radial-gradient(ellipse 780px 450px at 0% 0%, #d0e5ed 0%, transparent 76%),
+    radial-gradient(ellipse 760px 440px at 100% 24%, #d4ebe7 0%, transparent 78%),
+    linear-gradient(rgba(19, 59, 99, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(19, 59, 99, 0.025) 1px, transparent 1px);
+  background-size: auto, auto, 34px 34px, 34px 34px;
+  background-attachment: scroll;
+}
+
+/* Section bands are deliberately different in temperature, not a sea of white. */
+.dashboard-container .dashboard-grid {
+  gap: clamp(16px, 2vw, 28px);
+}
+.dashboard-container .dashboard-grid > .grid-col {
+  gap: clamp(16px, 2vw, 28px);
+}
+.dashboard-container .dashboard-section-card {
+  border: 1px solid #cbdde8;
+  border-radius: 17px;
+  background-color: #f3f8fb;
+  box-shadow: 0 8px 25px rgba(21, 62, 99, 0.08);
+  overflow: hidden;
+  padding: clamp(18px, 2vw, 26px);
+}
+.dashboard-container .dashboard-grid .grid-col:first-child > .dashboard-section-card:nth-child(2n) {
+  background-color: #e6f3f1;
+  border-color: #c9e4de;
+}
+.dashboard-container .dashboard-grid .grid-col:last-child > .dashboard-section-card:nth-child(2n + 1) {
+  background-color: #e8eff8;
+  border-color: #cbdcec;
+}
+.dashboard-container .dashboard-section-card .card-header-row {
+  border-bottom: 1px solid #c9d9e5;
+  padding-bottom: 15px;
+  margin-bottom: 18px;
+}
+.dashboard-container .dashboard-section-card .card-title {
+  font-size: clamp(1.05rem, 1.3vw, 1.24rem);
+  color: #14385f;
+  letter-spacing: -0.035em;
+}
+.dashboard-container .dashboard-section-card .card-subtitle {
+  color: #496580;
+  font-size: 0.81rem;
+}
+
+/* The metric cards now read as four separate purposeful dashboard indicators. */
+.dashboard-metrics-grid .metric-card {
+  min-height: 142px;
+  border: 1px solid #c7dce7;
+  box-shadow: 0 9px 24px rgba(25, 66, 101, 0.08);
+}
+.dashboard-metrics-grid .metric-card-deadlines {
+  background: #fff0e5;
+  border-color: #efcdb9;
+}
+.dashboard-metrics-grid .metric-card-saved {
+  background: #fff4d8;
+  border-color: #e9d9a7;
+}
+.dashboard-metrics-grid .metric-card-tasks {
+  background: #dfebf7;
+  border-color: #bad1e7;
+}
+.dashboard-metrics-grid .metric-card-career {
+  background: #ddf2ed;
+  border-color: #b2dbd2;
+}
+.dashboard-metrics-grid .metric-label {
+  font-size: 0.78rem;
+  color: #36536b;
+  letter-spacing: 0.045em;
+}
+.dashboard-metrics-grid .metric-value {
+  color: #103653;
+}
+.dashboard-metrics-grid .metric-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 32px rgba(19, 56, 88, 0.13);
+}
+
+/* Alternating subdued tints for deadline items keep urgency distinct. */
+.dashboard-container .deadline-item {
+  background-color: #fff;
+  border-color: #d6e2eb;
+  border-left-width: 4px;
+}
+.dashboard-container .deadline-item-urgent {
+  background-color: #fff1e8;
+  border-color: #f1d0bf;
+  border-left-color: #e96636;
+}
+.dashboard-container .deadline-item-warning {
+  background-color: #fff7e0;
+  border-color: #eadcae;
+  border-left-color: #be881c;
+}
+
+/* Make the two exploration links look like intentional destinations. */
+.dashboard-container .quick-links-grid {
+  gap: 18px;
+}
+.dashboard-container .quick-link-card {
+  background: #153d68;
+  border: 1px solid #153d68;
+  border-radius: 15px;
+  box-shadow: 0 12px 26px rgba(17, 57, 94, 0.14);
+}
+.dashboard-container .quick-link-card:nth-child(even) {
+  background: #0c625f;
+  border-color: #0c625f;
+}
+.dashboard-container .quick-link-card .quick-link-title,
+.dashboard-container .quick-link-card .quick-link-desc,
+.dashboard-container .quick-link-card .quick-link-arrow {
+  color: #fff;
+}
+.dashboard-container .quick-link-card:hover {
+  background: #1d5081;
+  border-color: #1d5081;
+}
+.dashboard-container .quick-link-card:nth-child(even):hover {
+  background: #0d7470;
+  border-color: #0d7470;
+}
+
+/* Distinctive dark page introductions provide visual punctuation. */
+.explore-page > .page-header,
+.career-page > .page-header {
+  background: #163d67;
+  border: 1px solid #163d67;
+  border-left: 5px solid #3dc2b1;
+  border-radius: 18px;
+  padding: clamp(23px, 3vw, 38px);
+  box-shadow: 0 16px 36px rgba(17, 54, 90, 0.15);
+}
+.explore-page > .page-header::after,
+.career-page > .page-header::after {
+  border-color: rgba(78, 204, 190, 0.16);
+}
+.explore-page > .page-header .page-title,
+.career-page > .page-header .page-title {
+  color: #fff;
+  font-size: clamp(1.6rem, 2.4vw, 2.15rem);
+}
+.explore-page > .page-header .page-description,
+.career-page > .page-header .page-description {
+  color: #d6e9f6;
+}
+.explore-page > .page-header .breadcrumb-link,
+.career-page > .page-header .breadcrumb-link {
+  color: #a4ece1;
+}
+.explore-page > .page-header .tag-sample,
+.career-page > .page-header .tag-sample {
+  background: #295b82;
+  color: #e8f8ff;
+  border-color: #467d9b;
+}
+
+/* The catalogue feels browsable, with coloured card headers and clear borders. */
+.explore-page .filter-bar-container {
+  background: #e0ecf1;
+  border: 1px solid #cbdce6;
+  border-radius: 16px;
+  padding: clamp(12px, 1.6vw, 20px);
+}
+.explore-page .opportunity-card {
+  position: relative;
+  overflow: hidden;
+  background: #f1f7fa;
+  border: 1px solid #c9dae4;
+  border-radius: 15px;
+  box-shadow: 0 8px 18px rgba(21, 62, 99, 0.055);
+}
+.explore-page .opportunity-card:nth-child(3n + 2) {
+  background: #eaf4f0;
+  border-color: #c8e3dc;
+}
+.explore-page .opportunity-card:nth-child(3n + 3) {
+  background: #f9f2e6;
+  border-color: #e9dcc2;
+}
+.explore-page .opportunity-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 4px;
+  background: #2d79a4;
+}
+.explore-page .opportunity-card:nth-child(3n + 2)::before { background: #1f9d8c; }
+.explore-page .opportunity-card:nth-child(3n + 3)::before { background: #bf8a4c; }
+.explore-page .opportunity-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 28px rgba(21, 62, 99, 0.11);
+}
+.explore-page .opportunity-card.is-saved {
+  outline: 2px solid #d6a95a;
+  outline-offset: -2px;
+}
+
+/* Guidance reads more like an engaging learning experience, not a blank form. */
+.career-page .career-intro-card {
+  background: #e9f5f3;
+  border: 1px solid #bcdfd8;
+  border-top: 5px solid #168d83;
+  box-shadow: 0 18px 38px rgba(18, 62, 81, 0.11);
+}
+.career-page .career-intro-card .intro-title {
+  color: #123d63;
+}
+.career-page .career-card {
+  background-color: #f0f6fa;
+  border-color: #cbdde8;
+}
+.career-page .career-card:nth-child(2n) {
+  background-color: #e9f5f2;
+  border-color: #bfded5;
+}
+.career-page .premium-promo-card {
+  background: #e4f2f0;
+  border: 1px solid #b7dad2;
+  border-left: 5px solid #148f83;
+  border-radius: 17px;
+  box-shadow: 0 15px 34px rgba(22, 78, 90, 0.11);
+}
+.career-page .premium-inline-shell .premium-modal-card {
+  background: #eef6f9;
+  border: 1px solid #bfdae7;
+  border-radius: 16px;
+}
+.career-page .expander-card {
+  background: #eaf1f8;
+  border-color: #cbddeb;
+}
+
+/* Stronger buttons and input focus, still accessible with keyboard. */
+.btn-primary {
+  box-shadow: 0 4px 13px rgba(23, 59, 112, 0.16);
+}
+.btn-primary:hover {
+  box-shadow: 0 8px 18px rgba(23, 59, 112, 0.22);
+}
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid #16a99b;
+  outline-offset: 3px;
+}
+
+@media (max-width: 768px) {
+  body {
+    background-color: #eaf1f6;
+    background-image: radial-gradient(ellipse 430px 360px at 0% 0%, #d8e9f0, transparent 76%);
+  }
+  .dashboard-container .dashboard-section-card {
+    padding: 18px;
+  }
+  .dashboard-metrics-grid .metric-card {
+    min-height: 115px;
+  }
+  .explore-page .filter-bar-container {
+    padding: 12px;
+  }
+  .explore-page > .page-header,
+  .career-page > .page-header {
+    padding: 22px 17px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dashboard-metrics-grid .metric-card:hover,
+  .explore-page .opportunity-card:hover {
+    transform: none;
+  }
+}
