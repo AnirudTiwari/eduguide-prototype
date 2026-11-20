@@ -176,7 +176,7 @@ export default function Dashboard() {
           <div className="hero-text-area">
             <div className="hero-top-badge-row">
               <span className="tag-sample">Student Workspace</span>
-              <span className="student-status-pill">Academic Year 2024–25</span>
+              <span className="student-status-pill">Your admission planner</span>
             </div>
 
             <h1 className="hero-greeting">
