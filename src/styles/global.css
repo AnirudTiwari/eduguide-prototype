@@ -4704,3 +4704,194 @@ textarea:focus-visible {
     transform: none;
   }
 }
+
+
+/* ==========================================================================
+   EduGuide Navigation · refined dark brand header
+   Consistent line icons, strong active state, tactile links and mobile layout.
+   ========================================================================== */
+.navbar {
+  background: #12375e;
+  border-bottom: 1px solid #2b5d83;
+  box-shadow: 0 8px 26px rgba(15, 48, 80, 0.15);
+}
+.navbar-container {
+  min-height: 76px;
+  height: auto;
+  gap: clamp(18px, 2vw, 32px);
+}
+.navbar-brand {
+  gap: 11px;
+  flex-shrink: 0;
+}
+.navbar-brand:hover { opacity: 1; }
+.navbar-brand .brand-icon {
+  width: 43px;
+  height: 43px;
+  border-radius: 12px;
+  background: #f5fafc;
+  color: #12375e;
+  box-shadow: 0 3px 12px rgba(3, 21, 38, 0.2);
+  transition: transform 180ms ease;
+}
+.navbar-brand:hover .brand-icon { transform: translateY(-2px); }
+.navbar-brand .brand-icon svg { width: 25px; height: 25px; }
+.navbar-brand .brand-name {
+  color: #fff;
+  font-size: 1.42rem;
+  letter-spacing: -0.055em;
+  font-weight: 800;
+}
+.navbar-brand .brand-tag {
+  background: #155e63;
+  color: #ccf5ed;
+  border: 1px solid #348b88;
+  padding: 3px 9px;
+  font-size: 0.63rem;
+  letter-spacing: 0.075em;
+}
+.navbar .desktop-nav-group {
+  gap: clamp(12px, 1.7vw, 24px);
+}
+.navbar .nav-links { gap: 5px; }
+.navbar .nav-link {
+  gap: 9px;
+  min-height: 43px;
+  padding: 9px 15px;
+  border-radius: 10px;
+  color: #d8e9f4;
+  font-size: 0.9rem;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: none;
+  transition: background-color 180ms ease, color 180ms ease,
+              border-color 180ms ease, transform 180ms ease;
+}
+.navbar .nav-link-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+}
+.navbar .eduguide-nav-svg {
+  width: 19px;
+  height: 19px;
+  display: block;
+}
+.navbar .nav-link:hover {
+  background: #24567c;
+  color: #fff;
+  transform: translateY(-1px);
+}
+.navbar .nav-link.active {
+  position: relative;
+  background: #e3f5f0;
+  color: #0d4c55;
+  font-weight: 750;
+  box-shadow: none;
+}
+.navbar .nav-link.active::after {
+  content: '';
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: -8px;
+  height: 3px;
+  background: #48caba;
+  border-radius: 3px;
+}
+.navbar .nav-counter-badge {
+  background: #1d4e75;
+  color: #fff;
+  min-width: 21px;
+  height: 21px;
+  border: 1px solid #48799b;
+  box-shadow: none;
+}
+.navbar .nav-link.nav-link-secondary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 42px;
+  gap: 9px;
+  padding: 8px 15px;
+  border: 1px solid #537c9e;
+  border-radius: 10px;
+  background: #1d496e;
+  color: #e2f1f8;
+  font-size: 0.86rem;
+}
+.navbar .nav-link.nav-link-secondary:hover {
+  background: #2b5e83;
+  border-color: #78a5bb;
+  color: #fff;
+}
+.navbar .nav-link.nav-link-secondary.active {
+  color: #0d4c55;
+  background: #e3f5f0;
+  border-color: #e3f5f0;
+}
+.navbar .mobile-menu-btn {
+  min-width: 44px;
+  min-height: 44px;
+  background: #1c5078;
+  color: #fff;
+  border: 1px solid #507d9b;
+  border-radius: 10px;
+}
+.navbar .mobile-menu-btn:hover {
+  background: #2c628c;
+}
+.navbar .mobile-nav {
+  background: #12375e;
+  border-top: 1px solid #38658a;
+  border-bottom: 1px solid #38658a;
+  box-shadow: 0 12px 26px rgba(15, 48, 80, 0.17);
+}
+.navbar .mobile-nav .nav-link {
+  min-height: 48px;
+  width: 100%;
+  justify-content: flex-start;
+  border-radius: 9px;
+}
+.navbar .mobile-nav .nav-link.active::after {
+  left: auto;
+  right: 0;
+  top: 10px;
+  bottom: 10px;
+  width: 3px;
+  height: auto;
+}
+.navbar .mobile-nav .nav-counter-badge {
+  margin-left: auto;
+}
+.navbar a:focus-visible,
+.navbar button:focus-visible {
+  outline: 3px solid #7be1d2;
+  outline-offset: 3px;
+}
+@media (max-width: 1050px) and (min-width: 769px) {
+  .navbar-brand .brand-tag { display: none; }
+  .navbar .nav-link { padding: 8px 10px; gap: 6px; }
+  .navbar .desktop-nav-group { gap: 8px; }
+}
+@media (max-width: 768px) {
+  .navbar-container {
+    min-height: 70px;
+    padding: 0 18px;
+  }
+  .navbar-brand .brand-name { font-size: 1.27rem; }
+  .navbar-brand .brand-icon { width: 39px; height: 39px; }
+  .navbar-brand .brand-tag { font-size: 0.57rem; }
+  .navbar .mobile-nav { padding: 12px 18px 18px; }
+}
+@media (max-width: 370px) {
+  .navbar-brand .brand-tag { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .navbar .nav-link,
+  .navbar-brand .brand-icon { transition: none !important; }
+  .navbar .nav-link:hover,
+  .navbar-brand:hover .brand-icon { transform: none; }
+}
