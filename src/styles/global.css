@@ -3690,6 +3690,13 @@ textarea:focus-visible {
 /* ============================================================
    PREMIUM MODAL
    ============================================================ */
+/* Keep Premium dialog above the navbar, page animations, and sticky elements. */
+.premium-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+}
+
 .premium-modal-card {
   background: #fff;
   border-radius: var(--radius-lg);
