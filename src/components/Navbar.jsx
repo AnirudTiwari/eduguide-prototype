@@ -19,15 +19,15 @@ export default function Navbar() {
   };
 
   const mainNavItems = [
-    { name: 'Dashboard', path: '/' },
-    { name: 'Explore', path: '/explore' },
-    { name: 'Career Guidance', path: '/career' },
+    { name: 'Dashboard', path: '/', icon: '📊' },
+    { name: 'Explore', path: '/explore', icon: '🔍' },
+    { name: 'Career Guidance', path: '/career', icon: '🧭' },
   ];
 
   return (
     <nav className="navbar" aria-label="Main Navigation">
       <div className="navbar-container">
-        {/* Brand Logo with graduation cap inline SVG */}
+        {/* Brand Logo with graduation cap inline SVG and prototype tag */}
         <NavLink to="/" className="navbar-brand" onClick={handleLinkClick}>
           <span className="brand-icon" aria-hidden="true">
             <svg
@@ -38,7 +38,8 @@ export default function Navbar() {
               <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z" />
             </svg>
           </span>
-          <span>EduGuide</span>
+          <span className="brand-name">EduGuide</span>
+          <span className="brand-tag">Prototype</span>
         </NavLink>
 
         {/* Desktop Navigation Links */}
@@ -53,6 +54,7 @@ export default function Navbar() {
                     isActive ? 'nav-link active' : 'nav-link'
                   }
                 >
+                  <span className="nav-link-icon" aria-hidden="true">{item.icon}</span>
                   <span>{item.name}</span>
                   {item.path === '/' && savedIds.length > 0 && (
                     <span
@@ -76,7 +78,8 @@ export default function Navbar() {
                 : 'nav-link nav-link-secondary'
             }
           >
-            <span>💬 Feedback</span>
+            <span aria-hidden="true">💬</span>
+            <span>Feedback</span>
           </NavLink>
         </div>
 
@@ -136,6 +139,7 @@ export default function Navbar() {
               }
               onClick={handleLinkClick}
             >
+              <span className="nav-link-icon" aria-hidden="true">{item.icon}</span>
               <span>{item.name}</span>
               {item.path === '/' && savedIds.length > 0 && (
                 <span

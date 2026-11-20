@@ -1,18 +1,21 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
 import Toast from './Toast';
 
 /**
  * Layout Component
  * Wraps page routes with the persistent Navbar header,
- * global toast notifications, and provides a consistent page shell.
+ * global toast notifications, and provides a consistent page shell
+ * with subtle, accessible page entrance transitions.
  */
 export default function Layout() {
+  const location = useLocation();
+
   return (
     <div className="app-layout">
       <Navbar />
       <Toast />
-      <main className="main-content">
+      <main key={location.pathname} className="main-content page-enter">
         <Outlet />
       </main>
     </div>

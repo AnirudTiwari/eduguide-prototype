@@ -222,7 +222,7 @@ export default function CareerResults({ answers, onEdit, onReset }) {
                 : 'badge-normal';
 
             return (
-              <article key={path.id} className="career-card card">
+              <article key={path.id} className={`career-card card pathway-match-${matchLevel.toLowerCase()} animate-stagger-${index + 1}`}>
                 {/* Header Row */}
                 <div className="career-card-header">
                   <div className="career-rank-title">

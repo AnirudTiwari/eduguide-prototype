@@ -193,8 +193,8 @@ export default function CareerQuestionnaire({
         </div>
       </div>
 
-      {/* Question Details */}
-      <div className="q-content">
+      {/* Question Details with smooth step transition */}
+      <div key={currentQ.id} className="q-content question-fade-enter">
         <h2 className="q-title">{currentQ.title}</h2>
         <p className="q-subtitle">{currentQ.subtitle}</p>
 

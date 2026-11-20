@@ -66,7 +66,7 @@ export default function CareerGuidance() {
               <span className="feat-icon">⚡</span>
               <div>
                 <strong>Takes About 1 Minute</strong>
-                <p>6 quick single- and multi-select questions.</p>
+                <p>7 quick single- and multi-select questions.</p>
               </div>
             </div>
 
