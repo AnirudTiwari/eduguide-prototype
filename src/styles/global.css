@@ -3690,6 +3690,32 @@ textarea:focus-visible {
 /* ============================================================
    PREMIUM MODAL
    ============================================================ */
+/* Inline Premium details: no backdrop, stacking context, fixed positioning,
+   or scroll-locking. Accessible within the normal Career Results flow. */
+.premium-inline-shell {
+  margin: var(--space-5) 0 var(--space-6);
+  scroll-margin-top: calc(var(--navbar-height) + 20px);
+}
+.premium-inline-shell .premium-modal-card {
+  width: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  overflow: visible;
+  animation: none;
+  box-shadow: var(--shadow-md);
+}
+.premium-inline-shell .premium-modal-body {
+  overflow: visible;
+  flex: auto;
+}
+@media (max-width: 768px) {
+  .premium-inline-shell {
+    scroll-margin-top: calc(var(--navbar-height) + 12px);
+  }
+}
+
+
 /* Native Premium dialog: showModal() places this element in the browser's
    top layer, independent of all page stacking contexts and scroll positions. */
 .premium-native-dialog {
