@@ -2,6 +2,23 @@ import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 
+/** Crisp, consistent line icons instead of platform-dependent emoji. */
+function NavigationIcon({ name }) {
+  const paths = {
+    dashboard: <><rect x="3" y="3" width="7" height="7" rx="1.5" /><rect x="14" y="3" width="7" height="7" rx="1.5" /><rect x="3" y="14" width="7" height="7" rx="1.5" /><rect x="14" y="14" width="7" height="7" rx="1.5" /></>,
+    search: <><circle cx="10.8" cy="10.8" r="6.7" /><path d="m16 16 4.8 4.8" /></>,
+    guidance: <><circle cx="12" cy="12" r="8.5" /><path d="m15.7 8.3-2.3 5.1-5.1 2.3 2.3-5.1z" /></>,
+    feedback: <><path d="M20 11.4a7.5 7.5 0 0 1-7.5 7.5 8 8 0 0 1-3.3-.7L4 20l1.6-4.5a7.5 7.5 0 1 1 14.4-4.1Z" /><path d="M9 11.5h6" /></>,
+  };
+  return (
+    <svg className="eduguide-nav-svg" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"
+      strokeLinejoin="round" aria-hidden="true">
+      {paths[name]}
+    </svg>
+  );
+}
+
 /**
  * Navbar Component
  * Displays the EduGuide brand and navigation links.
@@ -19,9 +36,9 @@ export default function Navbar() {
   };
 
   const mainNavItems = [
-    { name: 'Dashboard', path: '/', icon: '📊' },
-    { name: 'Explore', path: '/explore', icon: '🔍' },
-    { name: 'Career Guidance', path: '/career', icon: '🧭' },
+    { name: 'Dashboard', path: '/', icon: 'dashboard' },
+    { name: 'Explore', path: '/explore', icon: 'search' },
+    { name: 'Career Guidance', path: '/career', icon: 'guidance' },
   ];
 
   return (
@@ -54,7 +71,7 @@ export default function Navbar() {
                     isActive ? 'nav-link active' : 'nav-link'
                   }
                 >
-                  <span className="nav-link-icon" aria-hidden="true">{item.icon}</span>
+                  <span className="nav-link-icon"><NavigationIcon name={item.icon} /></span>
                   <span>{item.name}</span>
                   {item.path === '/' && savedIds.length > 0 && (
                     <span
@@ -78,7 +95,7 @@ export default function Navbar() {
                 : 'nav-link nav-link-secondary'
             }
           >
-            <span aria-hidden="true">💬</span>
+            <span className="nav-link-icon"><NavigationIcon name="feedback" /></span>
             <span>Feedback</span>
           </NavLink>
         </div>
@@ -139,7 +156,7 @@ export default function Navbar() {
               }
               onClick={handleLinkClick}
             >
-              <span className="nav-link-icon" aria-hidden="true">{item.icon}</span>
+              <span className="nav-link-icon"><NavigationIcon name={item.icon} /></span>
               <span>{item.name}</span>
               {item.path === '/' && savedIds.length > 0 && (
                 <span
@@ -162,7 +179,8 @@ export default function Navbar() {
             onClick={handleLinkClick}
             style={{ marginTop: 'var(--space-2)' }}
           >
-            <span>💬 Feedback</span>
+            <span className="nav-link-icon"><NavigationIcon name="feedback" /></span>
+            <span>Feedback</span>
           </NavLink>
         </div>
       )}
