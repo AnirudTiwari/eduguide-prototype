@@ -4090,619 +4090,322 @@ textarea:focus-visible {
 
 
 /* ==========================================================================
-   EduGuide Workspace Polish · November 2026
-   Calm editorial design with lightweight CSS details, not a background video.
-   This block leaves all page logic and saved data untouched.
+   EDUGUIDE — CONSOLIDATED VISUAL SYSTEM
+   One deliberately restrained layer replaces the former "Workspace Polish"
+   and "Rich Surface Edition" overrides. Neutral surfaces, navy identity,
+   teal interaction and amber ONLY for urgency.
    ========================================================================== */
-
-/* An architectural grid and light pools of colour give depth while keeping
-   text-heavy content readable. There are no external media downloads. */
+:root {
+  --color-primary: #163b63;
+  --color-primary-hover: #12304e;
+  --color-primary-light: #e6f0f5;
+  --color-primary-border: #c4d7e1;
+  --color-teal: #218d84;
+  --color-teal-hover: #176f69;
+  --color-teal-light: #e5f3f0;
+  --color-teal-border: #b9dcd5;
+  --color-bg: #edf2f5;
+  --color-surface: #f9fbfc;
+  --color-surface-hover: #f2f7f8;
+  --color-surface-alt: #e8f0f2;
+  --color-border: #d5e1e7;
+  --color-border-hover: #b9ccd6;
+  --color-text-main: #172b3a;
+  --color-text-secondary: #304858;
+  --color-text-muted: #526678;
+  --color-text-subtle: #637685;
+  --shadow-sm: 0 2px 7px rgba(17, 50, 76, 0.045);
+  --shadow-md: 0 7px 21px rgba(17, 50, 76, 0.075);
+  --shadow-lg: 0 15px 34px rgba(17, 50, 76, 0.11);
+  --navbar-height: 76px;
+}
 body {
-  background-color: #f5f8fc;
-  background-image:
-    radial-gradient(ellipse 750px 380px at 6% 2%, rgba(214, 235, 245, 0.64), transparent 72%),
-    radial-gradient(ellipse 650px 320px at 94% 18%, rgba(216, 241, 236, 0.52), transparent 72%),
-    linear-gradient(rgba(23, 59, 112, 0.018) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(23, 59, 112, 0.018) 1px, transparent 1px);
-  background-size: auto, auto, 36px 36px, 36px 36px;
-  background-position: center top;
+  background-color: var(--color-bg);
+  background-image: radial-gradient(ellipse 1050px 460px at 50% 0%, #e1edf0 0%, transparent 80%);
+  background-repeat: no-repeat;
 }
-.main-content {
-  position: relative;
-  padding-top: clamp(1.25rem, 2.5vw, 2.5rem);
-}
+.main-content { padding-top: clamp(20px, 2.6vw, 34px); }
 
-/* A restrained header: strong brand separation without translucent glass. */
-.navbar {
-  background: #fff;
-  border-bottom: 1px solid #d9e5f0;
-  box-shadow: 0 5px 22px rgba(18, 51, 92, 0.045);
+/* Shared surface hierarchy — one radius, one shadow scale. */
+.card, .dashboard-section-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  box-shadow: var(--shadow-sm);
 }
-.navbar-brand .brand-name {
-  letter-spacing: -0.045em;
+.dashboard-container { gap: clamp(18px, 2vw, 26px); }
+.dashboard-grid, .grid-col { gap: clamp(16px, 2vw, 24px); }
+.dashboard-section-card {
+  padding: clamp(18px, 2vw, 25px);
 }
-.navbar .nav-link {
-  transition: background-color 180ms ease, color 180ms ease, box-shadow 180ms ease;
+.card-header-row {
+  border-color: var(--color-border);
+  padding-bottom: 13px;
 }
+.card-title, .section-title {
+  color: var(--color-primary);
+  letter-spacing: -0.025em;
+}
+.card-subtitle { color: var(--color-text-muted); }
 
-/* A high-contrast student workspace, rather than another plain white card. */
+/* Dark brand hero is the only large colour field on the dashboard. */
 .dashboard-hero-card {
+  position: relative;
   isolation: isolate;
   overflow: hidden;
-  padding: clamp(1.5rem, 3vw, 2.5rem);
-  border: 1px solid #294f80;
-  border-top: 0;
-  border-radius: 18px;
-  background-color: #12335f;
-  background-image: linear-gradient(112deg, #12335f 0%, #1a4775 78%, #1c527b 100%);
-  box-shadow: 0 18px 45px rgba(18, 51, 92, 0.16);
+  background: #163b63;
+  border: 1px solid #163b63;
+  border-top: 1px solid #163b63;
+  border-radius: 17px;
+  padding: clamp(23px, 3vw, 37px);
+  box-shadow: 0 14px 34px rgba(17, 50, 76, .15);
 }
 .dashboard-hero-card::before {
   content: '';
-  position: absolute;
   z-index: -1;
-  width: 410px;
-  height: 410px;
-  top: -255px;
-  right: -92px;
-  border: 1px solid rgba(139, 224, 219, 0.22);
+  pointer-events: none;
+  position: absolute;
+  top: -130px; right: -90px;
+  width: 300px; height: 300px;
+  border: 1px solid rgba(149, 219, 213, .22);
   border-radius: 50%;
-  box-shadow: 0 0 0 44px rgba(139, 224, 219, 0.045),
-              0 0 0 88px rgba(139, 224, 219, 0.03);
-  pointer-events: none;
-}
-.dashboard-hero-card::after {
-  content: '';
-  position: absolute;
-  z-index: -1;
-  right: 35px;
-  bottom: 0;
-  width: 200px;
-  height: 110px;
-  opacity: 0.28;
-  background-image: radial-gradient(#9ae8df 1.3px, transparent 1.3px);
-  background-size: 16px 16px;
-  mask-image: linear-gradient(to top, #000, transparent);
-  pointer-events: none;
+  box-shadow: 0 0 0 48px rgba(149, 219, 213, .045);
 }
 .dashboard-hero-card .hero-greeting {
   color: #fff;
-  font-size: clamp(1.45rem, 2.2vw, 2rem);
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
   letter-spacing: -0.035em;
 }
-.dashboard-hero-card .hero-text-area {
-  gap: 10px;
+.dashboard-hero-card .student-avatar {
+  width: 62px; height: 62px;
+  background: #e5f3f0;
+  border: 2px solid #9bcfc6;
+  color: #163b63;
+  box-shadow: none;
 }
 .dashboard-hero-card .tag-sample {
-  background: #dcecf8;
-  border-color: #dcecf8;
-  color: #173b70;
+  background: #e0ebf2;
+  color: #163b63;
+  border-color: #e0ebf2;
 }
 .dashboard-hero-card .student-status-pill {
-  background: #155d64;
-  color: #d0f7ee;
-  border-color: #2b8587;
-  padding: 3px 10px;
+  background: #205d67;
+  border-color: #44848b;
+  color: #d6f4ef;
 }
-.dashboard-hero-card .interests-label {
-  color: #d0deef;
-}
-.dashboard-hero-card .student-avatar {
-  width: 66px;
-  height: 66px;
-  background: #e4f7f4;
-  color: #12335f;
-  border: 3px solid #65c3bc;
-  box-shadow: 0 8px 25px rgba(0, 13, 39, 0.2);
-}
+.dashboard-hero-card .interests-label { color: #d3e2ee; }
 .dashboard-hero-card .profile-chip {
-  background: #244c79;
-  border-color: #416995;
-  color: #f0f6ff;
-  padding: 5px 12px;
+  background: #244b70;
+  color: #eef7fa;
+  border-color: #466985;
 }
-.dashboard-hero-card .profile-chip strong {
-  color: #fff;
-}
+.dashboard-hero-card .profile-chip strong { color: #fff; }
 .dashboard-hero-card .student-tag {
-  background: #20536f;
-  border-color: #347e8d;
-  color: #e7fffc;
+  background: #235b66;
+  color: #d8f5ee;
+  border-color: #42858a;
 }
-.dashboard-hero-card .student-tag:hover {
-  background: #276b7b;
-}
+.dashboard-hero-card .student-tag:hover { background: #286b74; }
 .dashboard-hero-card .hero-primary-btn {
-  background: #27baa9;
-  border-color: #27baa9;
-  color: #082d38;
-  font-weight: 750;
-  box-shadow: 0 6px 18px rgba(0, 10, 31, 0.16);
+  background: #50c3b4;
+  color: #0f3545;
+  border-color: #50c3b4;
+  box-shadow: none;
 }
 .dashboard-hero-card .hero-primary-btn:hover {
-  background: #64d1c2;
-  border-color: #64d1c2;
+  background: #8cdbcf;
+  border-color: #8cdbcf;
 }
 .dashboard-hero-card .hero-actions-area .btn-secondary,
 .dashboard-hero-card .hero-actions-area .btn-ghost-subtle {
-  background: #234e79;
-  color: #f5faff;
-  border: 1px solid #46719b;
+  background: #244b70;
+  color: #f5fbfc;
+  border: 1px solid #4c7190;
 }
 .dashboard-hero-card .hero-actions-area .btn-secondary:hover,
 .dashboard-hero-card .hero-actions-area .btn-ghost-subtle:hover {
-  background: #2c608d;
-  color: #fff;
+  background: #326084;
 }
 
-/* Compact metric cards with clear hierarchy and deliberate coloured accents. */
-.dashboard-metrics-grid {
-  gap: clamp(12px, 1.4vw, 20px);
-}
+/* Consistent neutral KPI cards — accents communicate category, not decoration. */
+.dashboard-metrics-grid { gap: clamp(12px, 1.4vw, 18px); }
 .dashboard-metrics-grid .metric-card {
   position: relative;
   overflow: hidden;
-  padding: 20px 21px;
+  background: #f9fbfc;
   min-height: 130px;
-  border: 1px solid #e0eaf2;
-  border-radius: 14px;
-  box-shadow: 0 8px 22px rgba(22, 53, 88, 0.045);
-  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 13px;
+  padding: 19px 20px;
+  box-shadow: var(--shadow-sm);
 }
 .dashboard-metrics-grid .metric-card::before {
   content: '';
   position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  height: 4px;
-  background: #9eb9d7;
+  top: 0; left: 0; right: 0; height: 3px;
+  background: #6f91ab;
 }
-.dashboard-metrics-grid .metric-card-deadlines::before { background: #ed956c; }
-.dashboard-metrics-grid .metric-card-saved::before { background: #cda961; }
-.dashboard-metrics-grid .metric-card-tasks::before { background: #568ebf; }
-.dashboard-metrics-grid .metric-card-career::before { background: #1aaf9c; }
+.dashboard-metrics-grid .metric-card-deadlines::before { background: #bd8353; }
+.dashboard-metrics-grid .metric-card-saved::before { background: #718a9d; }
+.dashboard-metrics-grid .metric-card-tasks::before { background: #4b7390; }
+.dashboard-metrics-grid .metric-card-career::before { background: #218d84; }
 .dashboard-metrics-grid .metric-value {
-  font-size: clamp(1.55rem, 1.9vw, 2.05rem);
-  letter-spacing: -0.04em;
+  color: var(--color-primary);
+  font-size: clamp(1.55rem, 2vw, 1.95rem);
+  letter-spacing: -0.045em;
 }
+.dashboard-metrics-grid .metric-label { color: #526678; }
 .dashboard-metrics-grid .metric-card:hover {
-  transform: translateY(-3px);
-  border-color: #bdd3e2;
-  box-shadow: 0 13px 28px rgba(22, 53, 88, 0.09);
-}
-
-/* Content sections have a distinct, warmer information surface. */
-.dashboard-container > section:not(.dashboard-metrics-grid):not(.quick-links-section) .card,
-.explore-page .opp-card,
-.career-page .career-card {
-  border-color: #dfebf3;
-  box-shadow: 0 8px 22px rgba(22, 53, 88, 0.05);
-}
-.dashboard-container .section-title,
-.explore-page .section-title,
-.career-page .section-title {
-  letter-spacing: -0.03em;
-}
-
-/* Give exploration and guidance a welcoming, recognizable header treatment. */
-.explore-page > .page-header,
-.career-page > .page-header {
-  position: relative;
-  overflow: hidden;
-  padding: clamp(20px, 2.7vw, 30px);
-  border: 1px solid #d9e6f0;
-  border-left: 5px solid #16a99b;
-  border-radius: 14px;
-  background: #ffffff;
-  box-shadow: 0 8px 24px rgba(22, 53, 88, 0.045);
-}
-.explore-page > .page-header::after,
-.career-page > .page-header::after {
-  content: '';
-  position: absolute;
-  width: 210px;
-  height: 210px;
-  right: -65px;
-  top: -150px;
-  border-radius: 50%;
-  border: 20px solid #e8f7f5;
-  pointer-events: none;
-}
-.explore-page .page-title,
-.career-page .page-title {
-  color: #173b70;
-  font-size: clamp(1.5rem, 2.3vw, 2rem);
-}
-.career-intro-card {
-  border: 1px solid #d8e7ef;
-  border-top: 5px solid #16a99b;
-  border-radius: 18px;
-  box-shadow: 0 18px 40px rgba(18, 51, 92, 0.085);
-  background-color: #fff;
-}
-.career-intro-card .intro-title {
-  font-size: clamp(1.5rem, 2.4vw, 2.1rem);
-  letter-spacing: -0.035em;
-}
-.career-intro-card .intro-badge {
-  background: #e4f6f2;
-  color: #086e66;
-  border: 1px solid #b8e6df;
-}
-
-/* Quiet motion: only small entry and hover effects, no animated video or canvas. */
-@keyframes workspaceReveal {
-  from { opacity: 0; transform: translateY(9px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.explore-page > .page-header,
-.career-page > .page-header,
-.career-intro-card {
-  animation: workspaceReveal 380ms ease-out both;
-}
-.dashboard-hero-card {
-  animation: workspaceReveal 420ms ease-out both;
-}
-.explore-page .opp-card,
-.dashboard-container .quick-link-card {
-  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
-}
-.explore-page .opp-card:hover,
-.dashboard-container .quick-link-card:hover {
+  border-color: #b9ccd6;
+  box-shadow: var(--shadow-md);
   transform: translateY(-2px);
-  box-shadow: 0 12px 25px rgba(18, 51, 92, 0.095);
 }
+.dashboard-metrics-grid .metric-card-saved,
+.dashboard-metrics-grid .metric-card-tasks,
+.dashboard-metrics-grid .metric-card-career,
+.dashboard-metrics-grid .metric-card-deadlines { background: #f9fbfc; }
 
-@media (max-width: 768px) {
-  body {
-    background-image: radial-gradient(ellipse 430px 320px at 5% 3%, #e9f3f9, transparent 76%);
-  }
-  .dashboard-hero-card {
-    padding: 22px 18px;
-    border-radius: 14px;
-  }
-  .dashboard-hero-card::before {
-    width: 280px;
-    height: 280px;
-    top: -190px;
-    right: -125px;
-  }
-  .dashboard-hero-card::after {
-    display: none;
-  }
-  .dashboard-hero-card .student-avatar {
-    width: 52px;
-    height: 52px;
-  }
-  .dashboard-hero-card .hero-profile-area {
-    min-width: 0;
-    align-items: flex-start;
-  }
-  .dashboard-hero-card .hero-actions-area {
-    width: 100%;
-  }
-  .dashboard-hero-card .hero-actions-area .btn {
-    min-height: 44px;
-  }
-  .dashboard-metrics-grid .metric-card {
-    min-height: 112px;
-  }
-  .explore-page > .page-header,
-  .career-page > .page-header {
-    padding: 20px 17px;
-  }
-  .explore-page > .page-header::after,
-  .career-page > .page-header::after {
-    opacity: 0.5;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .dashboard-hero-card,
-  .explore-page > .page-header,
-  .career-page > .page-header,
-  .career-intro-card {
-    animation: none !important;
-  }
-  .dashboard-metrics-grid .metric-card:hover,
-  .explore-page .opp-card:hover,
-  .dashboard-container .quick-link-card:hover {
-    transform: none;
-  }
-}
-
-
-/* ==========================================================================
-   EduGuide Rich Surface Edition
-   Solid colour blocking creates contrast and rhythm across long information pages.
-   All changes are decorative; no application logic, premium panel or modal behaviour.
-   ========================================================================== */
-
-:root {
-  --color-bg: #eaf1f6;
-  --color-surface-alt: #e8f2f2;
-  --color-border: #d5e3ec;
-}
-
-body {
-  background-color: #eaf1f6;
-  background-image:
-    radial-gradient(ellipse 780px 450px at 0% 0%, #d0e5ed 0%, transparent 76%),
-    radial-gradient(ellipse 760px 440px at 100% 24%, #d4ebe7 0%, transparent 78%),
-    linear-gradient(rgba(19, 59, 99, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(19, 59, 99, 0.025) 1px, transparent 1px);
-  background-size: auto, auto, 34px 34px, 34px 34px;
-  background-attachment: scroll;
-}
-
-/* Section bands are deliberately different in temperature, not a sea of white. */
-.dashboard-container .dashboard-grid {
-  gap: clamp(16px, 2vw, 28px);
-}
-.dashboard-container .dashboard-grid > .grid-col {
-  gap: clamp(16px, 2vw, 28px);
-}
-.dashboard-container .dashboard-section-card {
-  border: 1px solid #cbdde8;
-  border-radius: 17px;
-  background-color: #f3f8fb;
-  box-shadow: 0 8px 25px rgba(21, 62, 99, 0.08);
-  overflow: hidden;
-  padding: clamp(18px, 2vw, 26px);
-}
-.dashboard-container .dashboard-grid .grid-col:first-child > .dashboard-section-card:nth-child(2n) {
-  background-color: #e6f3f1;
-  border-color: #c9e4de;
-}
-.dashboard-container .dashboard-grid .grid-col:last-child > .dashboard-section-card:nth-child(2n + 1) {
-  background-color: #e8eff8;
-  border-color: #cbdcec;
-}
-.dashboard-container .dashboard-section-card .card-header-row {
-  border-bottom: 1px solid #c9d9e5;
-  padding-bottom: 15px;
-  margin-bottom: 18px;
-}
-.dashboard-container .dashboard-section-card .card-title {
-  font-size: clamp(1.05rem, 1.3vw, 1.24rem);
-  color: #14385f;
-  letter-spacing: -0.035em;
-}
-.dashboard-container .dashboard-section-card .card-subtitle {
-  color: #496580;
-  font-size: 0.81rem;
-}
-
-/* The metric cards now read as four separate purposeful dashboard indicators. */
-.dashboard-metrics-grid .metric-card {
-  min-height: 142px;
-  border: 1px solid #c7dce7;
-  box-shadow: 0 9px 24px rgba(25, 66, 101, 0.08);
-}
-.dashboard-metrics-grid .metric-card-deadlines {
-  background: #fff0e5;
-  border-color: #efcdb9;
-}
-.dashboard-metrics-grid .metric-card-saved {
-  background: #fff4d8;
-  border-color: #e9d9a7;
-}
-.dashboard-metrics-grid .metric-card-tasks {
-  background: #dfebf7;
-  border-color: #bad1e7;
-}
-.dashboard-metrics-grid .metric-card-career {
-  background: #ddf2ed;
-  border-color: #b2dbd2;
-}
-.dashboard-metrics-grid .metric-label {
-  font-size: 0.78rem;
-  color: #36536b;
-  letter-spacing: 0.045em;
-}
-.dashboard-metrics-grid .metric-value {
-  color: #103653;
-}
-.dashboard-metrics-grid .metric-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 16px 32px rgba(19, 56, 88, 0.13);
-}
-
-/* Alternating subdued tints for deadline items keep urgency distinct. */
+/* Standard information lists are calmer; only imminent deadlines are warm. */
 .dashboard-container .deadline-item {
-  background-color: #fff;
-  border-color: #d6e2eb;
-  border-left-width: 4px;
+  background: #fff;
+  border: 1px solid #d8e3e8;
+  border-left: 3px solid #9fb5c3;
 }
 .dashboard-container .deadline-item-urgent {
-  background-color: #fff1e8;
-  border-color: #f1d0bf;
-  border-left-color: #e96636;
+  background: #fcf2e9;
+  border-color: #e7d4c4;
+  border-left-color: #be7949;
 }
 .dashboard-container .deadline-item-warning {
-  background-color: #fff7e0;
-  border-color: #eadcae;
-  border-left-color: #be881c;
+  background: #f9f4ea;
+  border-color: #e6dac5;
+  border-left-color: #bd9860;
 }
 
-/* Make the two exploration links look like intentional destinations. */
-.dashboard-container .quick-links-grid {
-  gap: 18px;
-}
-.dashboard-container .quick-link-card {
-  background: #153d68;
-  border: 1px solid #153d68;
+/* Explore and Guidance use lighter introductory cards, not multiple dark bands. */
+.explore-page > .page-header, .career-page > .page-header {
+  position: relative;
+  overflow: hidden;
+  background: #e3edf1;
+  border: 1px solid #cbdde4;
+  border-left: 4px solid #218d84;
   border-radius: 15px;
-  box-shadow: 0 12px 26px rgba(17, 57, 94, 0.14);
+  padding: clamp(20px, 2.7vw, 30px);
+  box-shadow: none;
 }
-.dashboard-container .quick-link-card:nth-child(even) {
-  background: #0c625f;
-  border-color: #0c625f;
+.explore-page > .page-header::after, .career-page > .page-header::after { display: none; }
+.explore-page > .page-header .page-title, .career-page > .page-header .page-title {
+  color: #163b63;
+  font-size: clamp(1.5rem, 2.3vw, 2rem);
 }
-.dashboard-container .quick-link-card .quick-link-title,
-.dashboard-container .quick-link-card .quick-link-desc,
-.dashboard-container .quick-link-card .quick-link-arrow {
-  color: #fff;
+.explore-page > .page-header .page-description, .career-page > .page-header .page-description {
+  color: #496477;
 }
-.dashboard-container .quick-link-card:hover {
-  background: #1d5081;
-  border-color: #1d5081;
+.explore-page > .page-header .breadcrumb-link, .career-page > .page-header .breadcrumb-link {
+  color: #176f69;
 }
-.dashboard-container .quick-link-card:nth-child(even):hover {
-  background: #0d7470;
-  border-color: #0d7470;
-}
-
-/* Distinctive dark page introductions provide visual punctuation. */
-.explore-page > .page-header,
-.career-page > .page-header {
-  background: #163d67;
-  border: 1px solid #163d67;
-  border-left: 5px solid #3dc2b1;
-  border-radius: 18px;
-  padding: clamp(23px, 3vw, 38px);
-  box-shadow: 0 16px 36px rgba(17, 54, 90, 0.15);
-}
-.explore-page > .page-header::after,
-.career-page > .page-header::after {
-  border-color: rgba(78, 204, 190, 0.16);
-}
-.explore-page > .page-header .page-title,
-.career-page > .page-header .page-title {
-  color: #fff;
-  font-size: clamp(1.6rem, 2.4vw, 2.15rem);
-}
-.explore-page > .page-header .page-description,
-.career-page > .page-header .page-description {
-  color: #d6e9f6;
-}
-.explore-page > .page-header .breadcrumb-link,
-.career-page > .page-header .breadcrumb-link {
-  color: #a4ece1;
-}
-.explore-page > .page-header .tag-sample,
-.career-page > .page-header .tag-sample {
-  background: #295b82;
-  color: #e8f8ff;
-  border-color: #467d9b;
+.explore-page > .page-header .tag-sample, .career-page > .page-header .tag-sample {
+  background: #f6fafb;
+  color: #163b63;
+  border-color: #c5d8e2;
 }
 
-/* The catalogue feels browsable, with coloured card headers and clear borders. */
+/* Catalogue: unified surfaces and useful selection, not rotating rainbow tints. */
 .explore-page .filter-bar-container {
-  background: #e0ecf1;
-  border: 1px solid #cbdce6;
-  border-radius: 16px;
-  padding: clamp(12px, 1.6vw, 20px);
+  background: #e7eef2;
+  border: 1px solid #d3e0e7;
+  border-radius: 13px;
+  padding: clamp(14px, 1.7vw, 20px);
 }
 .explore-page .opportunity-card {
   position: relative;
+  background: #f9fbfc;
+  border: 1px solid var(--color-border);
+  border-radius: 13px;
+  box-shadow: var(--shadow-sm);
   overflow: hidden;
-  background: #f1f7fa;
-  border: 1px solid #c9dae4;
-  border-radius: 15px;
-  box-shadow: 0 8px 18px rgba(21, 62, 99, 0.055);
-}
-.explore-page .opportunity-card:nth-child(3n + 2) {
-  background: #eaf4f0;
-  border-color: #c8e3dc;
-}
-.explore-page .opportunity-card:nth-child(3n + 3) {
-  background: #f9f2e6;
-  border-color: #e9dcc2;
 }
 .explore-page .opportunity-card::before {
   content: '';
   position: absolute;
-  inset: 0 0 auto;
-  height: 4px;
-  background: #2d79a4;
+  top: 0; left: 0; right: 0; height: 2px;
+  background: #a5becd;
 }
-.explore-page .opportunity-card:nth-child(3n + 2)::before { background: #1f9d8c; }
-.explore-page .opportunity-card:nth-child(3n + 3)::before { background: #bf8a4c; }
+.explore-page .opportunity-card:nth-child(3n + 2),
+.explore-page .opportunity-card:nth-child(3n + 3) {
+  background: #f9fbfc;
+  border-color: var(--color-border);
+}
+.explore-page .opportunity-card:nth-child(3n + 2)::before,
+.explore-page .opportunity-card:nth-child(3n + 3)::before { background: #a5becd; }
 .explore-page .opportunity-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 16px 28px rgba(21, 62, 99, 0.11);
+  border-color: #92b8c0;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 .explore-page .opportunity-card.is-saved {
-  outline: 2px solid #d6a95a;
-  outline-offset: -2px;
+  background: #eef7f4;
+  border-color: #a2d0c6;
+  outline: none;
 }
 
-/* Guidance reads more like an engaging learning experience, not a blank form. */
-.career-page .career-intro-card {
-  background: #e9f5f3;
-  border: 1px solid #bcdfd8;
-  border-top: 5px solid #168d83;
-  box-shadow: 0 18px 38px rgba(18, 62, 81, 0.11);
-}
-.career-page .career-intro-card .intro-title {
-  color: #123d63;
-}
-.career-page .career-card {
-  background-color: #f0f6fa;
-  border-color: #cbdde8;
+/* Guidance, premium and expanders share the same surface treatment. */
+.career-page .career-intro-card,
+.career-page .career-card,
+.career-page .premium-promo-card,
+.career-page .expander-card,
+.career-page .premium-inline-shell .premium-modal-card {
+  background: #f9fbfc;
+  border: 1px solid #cfdee5;
+  border-radius: 14px;
+  box-shadow: var(--shadow-sm);
 }
 .career-page .career-card:nth-child(2n) {
-  background-color: #e9f5f2;
-  border-color: #bfded5;
+  background: #f9fbfc;
+  border-color: #cfdee5;
+}
+.career-page .career-intro-card {
+  border-top: 4px solid #218d84;
+  max-width: 790px;
+}
+.career-page .career-intro-card .intro-title {
+  color: #163b63;
+  font-size: clamp(1.5rem, 2.3vw, 2.05rem);
 }
 .career-page .premium-promo-card {
-  background: #e4f2f0;
-  border: 1px solid #b7dad2;
-  border-left: 5px solid #148f83;
-  border-radius: 17px;
-  box-shadow: 0 15px 34px rgba(22, 78, 90, 0.11);
+  border-left: 4px solid #218d84;
+  background: #ecf5f2;
+  box-shadow: var(--shadow-md);
 }
 .career-page .premium-inline-shell .premium-modal-card {
-  background: #eef6f9;
-  border: 1px solid #bfdae7;
-  border-radius: 16px;
-}
-.career-page .expander-card {
-  background: #eaf1f8;
-  border-color: #cbddeb;
+  background: #f2f7f8;
+  box-shadow: none;
 }
 
-/* Stronger buttons and input focus, still accessible with keyboard. */
-.btn-primary {
-  box-shadow: 0 4px 13px rgba(23, 59, 112, 0.16);
+/* Subtle, consistent interactive feedback. */
+.btn, .choice-btn, .nav-link {
+  transition-duration: 180ms;
 }
-.btn-primary:hover {
-  box-shadow: 0 8px 18px rgba(23, 59, 112, 0.22);
-}
-button:focus-visible,
-a:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible {
-  outline: 3px solid #16a99b;
+.btn-primary { box-shadow: none; }
+.btn-primary:hover { box-shadow: var(--shadow-sm); }
+button:focus-visible, a:focus-visible,
+input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 2px solid #218d84;
   outline-offset: 3px;
 }
-
 @media (max-width: 768px) {
-  body {
-    background-color: #eaf1f6;
-    background-image: radial-gradient(ellipse 430px 360px at 0% 0%, #d8e9f0, transparent 76%);
-  }
-  .dashboard-container .dashboard-section-card {
-    padding: 18px;
-  }
-  .dashboard-metrics-grid .metric-card {
-    min-height: 115px;
-  }
-  .explore-page .filter-bar-container {
-    padding: 12px;
-  }
-  .explore-page > .page-header,
-  .career-page > .page-header {
-    padding: 22px 17px;
-  }
+  body { background-image: none; }
+  .dashboard-hero-card { padding: 22px 18px; }
+  .dashboard-hero-card::before { display: none; }
+  .dashboard-hero-card .hero-profile-area { min-width: 0; }
+  .dashboard-hero-card .hero-actions-area { width: 100%; }
+  .dashboard-metrics-grid .metric-card { min-height: 113px; }
+  .explore-page > .page-header, .career-page > .page-header { padding: 20px 18px; }
+  .explore-page .filter-bar-container { padding: 12px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .dashboard-metrics-grid .metric-card:hover,
-  .explore-page .opportunity-card:hover {
-    transform: none;
-  }
+  .explore-page .opportunity-card:hover { transform: none; }
 }
 
 
