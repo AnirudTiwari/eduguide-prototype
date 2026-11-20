@@ -689,27 +689,50 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* 5. QUICK LINKS TO EXPLORE AND CAREER GUIDANCE */}
-      <section className="quick-links-grid" aria-label="Explore other sections">
-        <Link to="/explore" className="quick-link-card">
-          <div className="quick-link-content">
-            <div className="quick-link-title">🔍 Explore Directory</div>
-            <div className="quick-link-desc">
-              Browse real Indian colleges, entrance exams, and scholarship schemes
-            </div>
+      {/* 5. ADMISSION JOURNEY — actionable steps from existing saved data */}
+      <section className="journey-section" aria-labelledby="journey-title">
+        <div className="journey-heading">
+          <div>
+            <span className="journey-eyebrow">YOUR NEXT MOVES</span>
+            <h2 id="journey-title">Turn opportunities into a plan.</h2>
+            <p>Three practical steps to organize your admission journey.</p>
           </div>
-          <span className="quick-link-arrow" aria-hidden="true">→</span>
-        </Link>
+          <span className="journey-demo-tag">Student workspace · Demo</span>
+        </div>
 
-        <Link to="/career" className="quick-link-card">
-          <div className="quick-link-content">
-            <div className="quick-link-title">🧭 Career Guidance</div>
-            <div className="quick-link-desc">
-              View pathways for Electronics, Coding, and Entrepreneurship
-            </div>
-          </div>
-          <span className="quick-link-arrow" aria-hidden="true">→</span>
-        </Link>
+        <div className="journey-steps">
+          <Link to="/explore" className="journey-step">
+            <span className="journey-step-index" aria-hidden="true">01</span>
+            <span className="journey-step-copy">
+              <strong>Discover</strong>
+              <span>Explore colleges, examinations and scholarships.</span>
+              <small>{totalSavedCount > 0
+                ? `${totalSavedCount} saved ${totalSavedCount === 1 ? 'opportunity' : 'opportunities'}`
+                : 'Start exploring'}</small>
+            </span>
+            <span className="journey-arrow" aria-hidden="true">↗</span>
+          </Link>
+          <Link to="/career" className="journey-step">
+            <span className="journey-step-index" aria-hidden="true">02</span>
+            <span className="journey-step-copy">
+              <strong>Find your direction</strong>
+              <span>Review rule-based pathways tailored to your answers.</span>
+              <small>{careerAnswers ? 'Guidance questionnaire completed' : 'Take the guidance questionnaire'}</small>
+            </span>
+            <span className="journey-arrow" aria-hidden="true">↗</span>
+          </Link>
+          <a href="#tasks-heading" className="journey-step">
+            <span className="journey-step-index" aria-hidden="true">03</span>
+            <span className="journey-step-copy">
+              <strong>Take action</strong>
+              <span>Keep your next application tasks in one place.</span>
+              <small>{pendingTasksCount > 0
+                ? `${pendingTasksCount} ${pendingTasksCount === 1 ? 'task' : 'tasks'} pending`
+                : 'Review your checklist'}</small>
+            </span>
+            <span className="journey-arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
       </section>
 
       {/* 6. EDIT PROFILE MODAL */}
