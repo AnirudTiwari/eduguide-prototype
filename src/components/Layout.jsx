@@ -6,7 +6,7 @@ import Toast from './Toast';
  * Layout Component
  * Wraps page routes with the persistent Navbar header,
  * global toast notifications, and provides a consistent page shell
- * with subtle, accessible page entrance transitions.
+ * without a transformed ancestor that would trap fixed-position dialogs.
  */
 export default function Layout() {
   const location = useLocation();
@@ -15,7 +15,7 @@ export default function Layout() {
     <div className="app-layout">
       <Navbar />
       <Toast />
-      <main key={location.pathname} className="main-content page-enter">
+      <main key={location.pathname} className="main-content">
         <Outlet />
       </main>
     </div>
