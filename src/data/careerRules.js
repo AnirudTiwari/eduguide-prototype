@@ -8,8 +8,20 @@
  * - Every path receives human-readable explanations based directly on the user's answers.
  */
 
-// 1. QUESTIONNAIRE DEFINITION (6 Questions)
+// 1. QUESTIONNAIRE DEFINITION (7 Questions)
 export const questions = [
+  {
+    id: 'location',
+    title: 'What is your location preference for college?',
+    subtitle: 'Select where you would prefer to study.',
+    type: 'single',
+    options: [
+      'Chandigarh / Punjab region',
+      'Anywhere in India',
+      'Open to abroad later',
+    ],
+    whyWeAsk: 'Helps prioritize regional colleges near your home state.',
+  },
   {
     id: 'subjects',
     title: 'Which subjects do you enjoy the most?',
@@ -45,6 +57,33 @@ export const questions = [
     whyWeAsk: 'Hands-on interests point to natural work styles and technical affinities.',
   },
   {
+    id: 'achievements',
+    title: 'Have you participated in or achieved anything notable in competitions or co-curricular activities recently?',
+    subtitle: 'Tell us about your achievements so we can better understand your interests and strengths.',
+    type: 'achievements',
+    options: [
+      'Academic competitions / Olympiads',
+      'Coding, technology or hackathons',
+      'Science and innovation projects',
+      'Sports',
+      'Debate, public speaking or MUN',
+      'Arts, music or cultural activities',
+      'Leadership or community service',
+      'Other',
+      'No recent achievements',
+    ],
+    levelOptions: [
+      'School',
+      'District / City',
+      'State',
+      'National',
+      'International',
+      'Participation only / Not applicable',
+    ],
+    whyWeAsk: 'Helps recognize practical strengths and co-curricular initiative alongside classroom subjects.',
+    optional: true,
+  },
+  {
     id: 'performance',
     title: 'What is your recent approximate academic performance?',
     subtitle: 'Select your current score range.',
@@ -65,18 +104,6 @@ export const questions = [
       'Not sure yet',
     ],
     whyWeAsk: 'Aligns study pathways with the day-to-day lifestyle and industry pace you want.',
-  },
-  {
-    id: 'location',
-    title: 'What is your location preference for college?',
-    subtitle: 'Select where you would prefer to study.',
-    type: 'single',
-    options: [
-      'Chandigarh / Punjab region',
-      'Anywhere in India',
-      'Open to abroad later',
-    ],
-    whyWeAsk: 'Helps prioritize regional colleges near your home state.',
   },
   {
     id: 'educationLevel',
@@ -257,13 +284,44 @@ export const scoringRules = {
       'path-business': 1,
     },
   },
+  achievements: {
+    'Academic competitions / Olympiads': {
+      'path-pure-sciences': 2,
+      'path-software': 1,
+      'path-data-ai': 1,
+    },
+    'Coding, technology or hackathons': {
+      'path-software': 2,
+      'path-data-ai': 2,
+      'path-ece': 1,
+    },
+    'Science and innovation projects': {
+      'path-pure-sciences': 2,
+      'path-core-eng': 2,
+      'path-ece': 1,
+    },
+    'Sports': {},
+    'Debate, public speaking or MUN': {
+      'path-business': 2,
+      'path-design': 1,
+    },
+    'Arts, music or cultural activities': {
+      'path-design': 2,
+    },
+    'Leadership or community service': {
+      'path-business': 2,
+      'path-medicine': 1,
+    },
+    'Other': {},
+    'No recent achievements': {},
+  },
 };
 
 /**
  * Calculates rule-based recommendations given the user's questionnaire answers.
  * Returns all 8 paths sorted descending by score, with match levels and plain-English reasons.
  *
- * @param {Object} answers - User answers object { subjects, activities, performance, goalStyle, location, educationLevel }
+ * @param {Object} answers - User answers object { location, subjects, activities, achievements, achievementDescription, achievementLevel, performance, goalStyle, educationLevel }
  * @returns {Array} Ranked recommendations list
  */
 export function getRecommendations(answers) {
@@ -271,6 +329,7 @@ export function getRecommendations(answers) {
 
   const selectedSubjects = Array.isArray(answers.subjects) ? answers.subjects : [];
   const selectedActivities = Array.isArray(answers.activities) ? answers.activities : [];
+  const selectedAchievements = Array.isArray(answers.achievements) ? answers.achievements : [];
   const userPerformance = answers.performance || '';
   const userGoalStyle = answers.goalStyle || '';
 
@@ -303,6 +362,21 @@ export function getRecommendations(answers) {
       });
       if (contributingActivities.length > 0) {
         reasons.push(`You enjoy ${contributingActivities.join(' and ')}.`);
+      }
+
+      // 3. Tally points from achievements (optional & non-penalizing)
+      const contributingAchievements = [];
+      selectedAchievements.forEach((ach) => {
+        if (ach !== 'No recent achievements') {
+          const points = scoringRules.achievements?.[ach]?.[path.id] || 0;
+          if (points > 0) {
+            score += points;
+            contributingAchievements.push(ach);
+          }
+        }
+      });
+      if (contributingAchievements.length > 0) {
+        reasons.push(`Your achievement in ${contributingAchievements.join(' and ')} reinforces this pathway.`);
       }
 
       // 3. Tally points from career goal style

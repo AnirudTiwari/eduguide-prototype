@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { getRecommendations } from '../data/careerRules';
+import PremiumModal from './PremiumModal';
 import {
   getDateFromOffset,
   formatDate,
@@ -26,6 +27,20 @@ export default function CareerResults({ answers, onEdit, onReset }) {
   const [showOtherPaths, setShowOtherPaths] = useState(false);
   const [showScoringRules, setShowScoringRules] = useState(false);
   const [isConfirmingReset, setIsConfirmingReset] = useState(false);
+
+  // Proposed Premium modal state
+  const [isPremiumOpen, setIsPremiumOpen] = useState(false);
+  const [premiumTab, setPremiumTab] = useState('overview');
+
+  const handleOpenPremiumOverview = () => {
+    setPremiumTab('overview');
+    setIsPremiumOpen(true);
+  };
+
+  const handleOpenPremiumPreview = () => {
+    setPremiumTab('preview');
+    setIsPremiumOpen(true);
+  };
 
   // Compute transparent rule-based recommendations
   const allRecommendations = getRecommendations(answers);
@@ -91,24 +106,40 @@ export default function CareerResults({ answers, onEdit, onReset }) {
         <div className="summary-left">
           <h3 className="summary-title">Your Profile Snapshot</h3>
           <div className="summary-tags">
-            {answers.subjects && answers.subjects.length > 0 && (
-              <span className="summary-pill">
-                <strong>Subjects:</strong> {answers.subjects.join(', ')}
-              </span>
-            )}
-            {answers.goalStyle && (
-              <span className="summary-pill">
-                <strong>Goal:</strong> {answers.goalStyle}
-              </span>
-            )}
             {answers.location && (
               <span className="summary-pill">
                 <strong>Location:</strong> {answers.location}
               </span>
             )}
+            {answers.subjects && answers.subjects.length > 0 && (
+              <span className="summary-pill">
+                <strong>Subjects:</strong> {answers.subjects.join(', ')}
+              </span>
+            )}
+            {answers.activities && answers.activities.length > 0 && (
+              <span className="summary-pill">
+                <strong>Activities:</strong> {answers.activities.join(', ')}
+              </span>
+            )}
+            {answers.achievements && answers.achievements.length > 0 && (
+              <span className="summary-pill">
+                <strong>Achievements:</strong> {answers.achievements.join(', ')}
+                {answers.achievementLevel ? ` (${answers.achievementLevel})` : ''}
+              </span>
+            )}
+            {answers.achievementDescription && (
+              <span className="summary-pill" title={answers.achievementDescription}>
+                <strong>Note:</strong> "{answers.achievementDescription}"
+              </span>
+            )}
             {answers.performance && (
               <span className="summary-pill">
                 <strong>Performance:</strong> {answers.performance}
+              </span>
+            )}
+            {answers.goalStyle && (
+              <span className="summary-pill">
+                <strong>Goal:</strong> {answers.goalStyle}
               </span>
             )}
           </div>
@@ -339,7 +370,76 @@ export default function CareerResults({ answers, onEdit, onReset }) {
         </div>
       </section>
 
-      {/* 4. EXPLORE OTHER OPTIONS EXPANDER */}
+      {/* 4. PROPOSED PREMIUM PERSONALIZED GUIDANCE SECTION */}
+      <section className="premium-card-section" aria-labelledby="premium-section-title">
+        <div className="card premium-promo-card">
+          <div className="premium-card-top-row">
+            <div className="premium-badge-group">
+              <span className="badge badge-warning">Proposed Freemium Tier</span>
+              <span className="tag-sample">Concept Preview</span>
+            </div>
+            <div className="premium-price-pill">
+              <strong>₹299</strong>
+              <span className="price-sub">Proposed Student Package</span>
+            </div>
+          </div>
+
+          <div className="premium-card-headline">
+            <h3 id="premium-section-title" className="premium-card-title">
+              EduGuide Premium — Personalized Guidance
+            </h3>
+            <p className="premium-card-desc">
+              Get more structured support for planning your admission journey, exploring suitable opportunities, and staying organized.
+            </p>
+          </div>
+
+          {/* 4 Proposed Benefits List */}
+          <div className="premium-card-benefits">
+            <div className="card-benefit-item">
+              <span className="benefit-bullet" aria-hidden="true">🎯</span>
+              <span>Enhanced personalized admission planning</span>
+            </div>
+            <div className="card-benefit-item">
+              <span className="benefit-bullet" aria-hidden="true">⏱️</span>
+              <span>Advanced application and deadline tracking</span>
+            </div>
+            <div className="card-benefit-item">
+              <span className="benefit-bullet" aria-hidden="true">🎓</span>
+              <span>More detailed college and course guidance</span>
+            </div>
+            <div className="card-benefit-item">
+              <span className="benefit-bullet" aria-hidden="true">📊</span>
+              <span>Priority-based application planning</span>
+            </div>
+          </div>
+
+          <div className="premium-pricing-note-line">
+            <span className="discreet-note">
+              Illustrative pricing. Package details and availability are subject to validation.
+            </span>
+          </div>
+
+          {/* Action Buttons */}
+          <div className="premium-card-actions">
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={handleOpenPremiumOverview}
+            >
+              Explore Premium →
+            </button>
+            <button
+              type="button"
+              className="btn btn-secondary"
+              onClick={handleOpenPremiumPreview}
+            >
+              ✨ Preview Premium Experience
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. EXPLORE OTHER OPTIONS EXPANDER */}
       <section className="other-options-section">
         <div className="expander-card card">
           <button
@@ -440,6 +540,16 @@ export default function CareerResults({ answers, onEdit, onReset }) {
                       <td>{answers.performance || 'None'}</td>
                       <td>Competitive entry note attached if performance is Below 60% on highly competitive routes.</td>
                     </tr>
+                    <tr>
+                      <td>Location Preference</td>
+                      <td>{answers.location || 'None'}</td>
+                      <td>Location is used to sort college suggestions; it does not affect pathway scores.</td>
+                    </tr>
+                    <tr>
+                      <td>Achievements</td>
+                      <td>{answers.achievements?.filter(a => a !== 'No recent achievements').join(', ') || 'None selected'}</td>
+                      <td>Coding / hackathon achievements boost Software &amp; Data AI; Science projects boost Pure Sciences &amp; Core Engineering; MUN / Debate boosts Business.</td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -447,6 +557,15 @@ export default function CareerResults({ answers, onEdit, onReset }) {
           )}
         </div>
       </section>
+
+      {/* PROPOSED PREMIUM MODAL */}
+      <PremiumModal
+        isOpen={isPremiumOpen}
+        onClose={() => setIsPremiumOpen(false)}
+        initialTab={premiumTab}
+        answers={answers}
+        colleges={colleges}
+      />
     </div>
   );
 }

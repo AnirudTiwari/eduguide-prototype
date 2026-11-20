@@ -58,7 +58,7 @@ export default function CareerGuidance() {
             Find Career Pathways That Match Your Strengths
           </h2>
           <p className="intro-subtitle">
-            Answer 6 simple questions about your favourite subjects, activities, and goals to discover tailored undergraduate pathways.
+            Answer 7 simple questions about your favourite subjects, activities, and goals to discover tailored undergraduate pathways.
           </p>
 
           <div className="intro-features-grid">
