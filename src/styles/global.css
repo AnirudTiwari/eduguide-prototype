@@ -4087,3 +4087,326 @@ textarea:focus-visible {
   color: #fff;
   font-weight: 700;
 }
+
+
+/* ==========================================================================
+   EduGuide Workspace Polish · November 2026
+   Calm editorial design with lightweight CSS details, not a background video.
+   This block leaves all page logic and saved data untouched.
+   ========================================================================== */
+
+/* An architectural grid and light pools of colour give depth while keeping
+   text-heavy content readable. There are no external media downloads. */
+body {
+  background-color: #f5f8fc;
+  background-image:
+    radial-gradient(ellipse 750px 380px at 6% 2%, rgba(214, 235, 245, 0.64), transparent 72%),
+    radial-gradient(ellipse 650px 320px at 94% 18%, rgba(216, 241, 236, 0.52), transparent 72%),
+    linear-gradient(rgba(23, 59, 112, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(23, 59, 112, 0.018) 1px, transparent 1px);
+  background-size: auto, auto, 36px 36px, 36px 36px;
+  background-position: center top;
+}
+.main-content {
+  position: relative;
+  padding-top: clamp(1.25rem, 2.5vw, 2.5rem);
+}
+
+/* A restrained header: strong brand separation without translucent glass. */
+.navbar {
+  background: #fff;
+  border-bottom: 1px solid #d9e5f0;
+  box-shadow: 0 5px 22px rgba(18, 51, 92, 0.045);
+}
+.navbar-brand .brand-name {
+  letter-spacing: -0.045em;
+}
+.navbar .nav-link {
+  transition: background-color 180ms ease, color 180ms ease, box-shadow 180ms ease;
+}
+
+/* A high-contrast student workspace, rather than another plain white card. */
+.dashboard-hero-card {
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  border: 1px solid #294f80;
+  border-top: 0;
+  border-radius: 18px;
+  background-color: #12335f;
+  background-image: linear-gradient(112deg, #12335f 0%, #1a4775 78%, #1c527b 100%);
+  box-shadow: 0 18px 45px rgba(18, 51, 92, 0.16);
+}
+.dashboard-hero-card::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  width: 410px;
+  height: 410px;
+  top: -255px;
+  right: -92px;
+  border: 1px solid rgba(139, 224, 219, 0.22);
+  border-radius: 50%;
+  box-shadow: 0 0 0 44px rgba(139, 224, 219, 0.045),
+              0 0 0 88px rgba(139, 224, 219, 0.03);
+  pointer-events: none;
+}
+.dashboard-hero-card::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  right: 35px;
+  bottom: 0;
+  width: 200px;
+  height: 110px;
+  opacity: 0.28;
+  background-image: radial-gradient(#9ae8df 1.3px, transparent 1.3px);
+  background-size: 16px 16px;
+  mask-image: linear-gradient(to top, #000, transparent);
+  pointer-events: none;
+}
+.dashboard-hero-card .hero-greeting {
+  color: #fff;
+  font-size: clamp(1.45rem, 2.2vw, 2rem);
+  letter-spacing: -0.035em;
+}
+.dashboard-hero-card .hero-text-area {
+  gap: 10px;
+}
+.dashboard-hero-card .tag-sample {
+  background: #dcecf8;
+  border-color: #dcecf8;
+  color: #173b70;
+}
+.dashboard-hero-card .student-status-pill {
+  background: #155d64;
+  color: #d0f7ee;
+  border-color: #2b8587;
+  padding: 3px 10px;
+}
+.dashboard-hero-card .interests-label {
+  color: #d0deef;
+}
+.dashboard-hero-card .student-avatar {
+  width: 66px;
+  height: 66px;
+  background: #e4f7f4;
+  color: #12335f;
+  border: 3px solid #65c3bc;
+  box-shadow: 0 8px 25px rgba(0, 13, 39, 0.2);
+}
+.dashboard-hero-card .profile-chip {
+  background: #244c79;
+  border-color: #416995;
+  color: #f0f6ff;
+  padding: 5px 12px;
+}
+.dashboard-hero-card .profile-chip strong {
+  color: #fff;
+}
+.dashboard-hero-card .student-tag {
+  background: #20536f;
+  border-color: #347e8d;
+  color: #e7fffc;
+}
+.dashboard-hero-card .student-tag:hover {
+  background: #276b7b;
+}
+.dashboard-hero-card .hero-primary-btn {
+  background: #27baa9;
+  border-color: #27baa9;
+  color: #082d38;
+  font-weight: 750;
+  box-shadow: 0 6px 18px rgba(0, 10, 31, 0.16);
+}
+.dashboard-hero-card .hero-primary-btn:hover {
+  background: #64d1c2;
+  border-color: #64d1c2;
+}
+.dashboard-hero-card .hero-actions-area .btn-secondary,
+.dashboard-hero-card .hero-actions-area .btn-ghost-subtle {
+  background: #234e79;
+  color: #f5faff;
+  border: 1px solid #46719b;
+}
+.dashboard-hero-card .hero-actions-area .btn-secondary:hover,
+.dashboard-hero-card .hero-actions-area .btn-ghost-subtle:hover {
+  background: #2c608d;
+  color: #fff;
+}
+
+/* Compact metric cards with clear hierarchy and deliberate coloured accents. */
+.dashboard-metrics-grid {
+  gap: clamp(12px, 1.4vw, 20px);
+}
+.dashboard-metrics-grid .metric-card {
+  position: relative;
+  overflow: hidden;
+  padding: 20px 21px;
+  min-height: 130px;
+  border: 1px solid #e0eaf2;
+  border-radius: 14px;
+  box-shadow: 0 8px 22px rgba(22, 53, 88, 0.045);
+  background: #fff;
+}
+.dashboard-metrics-grid .metric-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 4px;
+  background: #9eb9d7;
+}
+.dashboard-metrics-grid .metric-card-deadlines::before { background: #ed956c; }
+.dashboard-metrics-grid .metric-card-saved::before { background: #cda961; }
+.dashboard-metrics-grid .metric-card-tasks::before { background: #568ebf; }
+.dashboard-metrics-grid .metric-card-career::before { background: #1aaf9c; }
+.dashboard-metrics-grid .metric-value {
+  font-size: clamp(1.55rem, 1.9vw, 2.05rem);
+  letter-spacing: -0.04em;
+}
+.dashboard-metrics-grid .metric-card:hover {
+  transform: translateY(-3px);
+  border-color: #bdd3e2;
+  box-shadow: 0 13px 28px rgba(22, 53, 88, 0.09);
+}
+
+/* Content sections have a distinct, warmer information surface. */
+.dashboard-container > section:not(.dashboard-metrics-grid):not(.quick-links-section) .card,
+.explore-page .opp-card,
+.career-page .career-card {
+  border-color: #dfebf3;
+  box-shadow: 0 8px 22px rgba(22, 53, 88, 0.05);
+}
+.dashboard-container .section-title,
+.explore-page .section-title,
+.career-page .section-title {
+  letter-spacing: -0.03em;
+}
+
+/* Give exploration and guidance a welcoming, recognizable header treatment. */
+.explore-page > .page-header,
+.career-page > .page-header {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(20px, 2.7vw, 30px);
+  border: 1px solid #d9e6f0;
+  border-left: 5px solid #16a99b;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 8px 24px rgba(22, 53, 88, 0.045);
+}
+.explore-page > .page-header::after,
+.career-page > .page-header::after {
+  content: '';
+  position: absolute;
+  width: 210px;
+  height: 210px;
+  right: -65px;
+  top: -150px;
+  border-radius: 50%;
+  border: 20px solid #e8f7f5;
+  pointer-events: none;
+}
+.explore-page .page-title,
+.career-page .page-title {
+  color: #173b70;
+  font-size: clamp(1.5rem, 2.3vw, 2rem);
+}
+.career-intro-card {
+  border: 1px solid #d8e7ef;
+  border-top: 5px solid #16a99b;
+  border-radius: 18px;
+  box-shadow: 0 18px 40px rgba(18, 51, 92, 0.085);
+  background-color: #fff;
+}
+.career-intro-card .intro-title {
+  font-size: clamp(1.5rem, 2.4vw, 2.1rem);
+  letter-spacing: -0.035em;
+}
+.career-intro-card .intro-badge {
+  background: #e4f6f2;
+  color: #086e66;
+  border: 1px solid #b8e6df;
+}
+
+/* Quiet motion: only small entry and hover effects, no animated video or canvas. */
+@keyframes workspaceReveal {
+  from { opacity: 0; transform: translateY(9px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.explore-page > .page-header,
+.career-page > .page-header,
+.career-intro-card {
+  animation: workspaceReveal 380ms ease-out both;
+}
+.dashboard-hero-card {
+  animation: workspaceReveal 420ms ease-out both;
+}
+.explore-page .opp-card,
+.dashboard-container .quick-link-card {
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+.explore-page .opp-card:hover,
+.dashboard-container .quick-link-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(18, 51, 92, 0.095);
+}
+
+@media (max-width: 768px) {
+  body {
+    background-image: radial-gradient(ellipse 430px 320px at 5% 3%, #e9f3f9, transparent 76%);
+  }
+  .dashboard-hero-card {
+    padding: 22px 18px;
+    border-radius: 14px;
+  }
+  .dashboard-hero-card::before {
+    width: 280px;
+    height: 280px;
+    top: -190px;
+    right: -125px;
+  }
+  .dashboard-hero-card::after {
+    display: none;
+  }
+  .dashboard-hero-card .student-avatar {
+    width: 52px;
+    height: 52px;
+  }
+  .dashboard-hero-card .hero-profile-area {
+    min-width: 0;
+    align-items: flex-start;
+  }
+  .dashboard-hero-card .hero-actions-area {
+    width: 100%;
+  }
+  .dashboard-hero-card .hero-actions-area .btn {
+    min-height: 44px;
+  }
+  .dashboard-metrics-grid .metric-card {
+    min-height: 112px;
+  }
+  .explore-page > .page-header,
+  .career-page > .page-header {
+    padding: 20px 17px;
+  }
+  .explore-page > .page-header::after,
+  .career-page > .page-header::after {
+    opacity: 0.5;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dashboard-hero-card,
+  .explore-page > .page-header,
+  .career-page > .page-header,
+  .career-intro-card {
+    animation: none !important;
+  }
+  .dashboard-metrics-grid .metric-card:hover,
+  .explore-page .opp-card:hover,
+  .dashboard-container .quick-link-card:hover {
+    transform: none;
+  }
+}
