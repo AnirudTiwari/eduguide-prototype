@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 
 /**
  * PremiumModal Component
@@ -59,7 +60,10 @@ export default function PremiumModal({
     ['col-3', 'col-6'].includes(c.id)
   );
 
-  return (
+  // Render above the animated page container so fixed positioning uses the viewport.
+  // The parent route uses a transform-based entrance animation, which otherwise
+  // makes the modal fixed relative to the page and can place it off-screen.
+  return createPortal(
     <div
       className="modal-backdrop"
       onClick={onClose}
@@ -417,6 +421,7 @@ export default function PremiumModal({
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
